@@ -1,4 +1,4 @@
-command: "osascript -e 'tell application \"Firefox\" to return name of window 3' | cut -d '-' -f 1,2"
+command: "osascript -e 'tell application \"Firefox\"' -e 'set window_list to every window' -e 'repeat with the_window in window_list' -e 'set windowName to name of the_window' -e 'if windowName contains \"Google Play Music\" then' -e 'return windowName' -e 'end if' -e 'end repeat' -e 'end tell' | cut -d '-' -f 1,2"
 
 refreshFrequency: 5000 # ms
 
