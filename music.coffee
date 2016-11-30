@@ -3,14 +3,18 @@ command: "osascript -e 'tell application \"Firefox\"' -e 'set window_list to eve
 refreshFrequency: 5000 # ms
 
 render: (output) ->
-  "music <span>#{output}</span>"
-
+  artist = output.split('-')[1].trim()
+  song = output.split('-')[0].trim()
+  out = if artist != "Google Play Music" then "music \"<span class='data'>#{song}</span>\" by <span class='data'>#{artist}</span>" else "album <span class='data'>#{song}</span>"
+  "#{out}"
 style: """
   -webkit-font-smoothing: antialiased
   color: #D5C4A1
   font: 12px Hack
   right: 400px
   top: 6px
-  span
+  .data
     color: #7AAB7E
+  .byline
+    color: #D5C4A1
 """
